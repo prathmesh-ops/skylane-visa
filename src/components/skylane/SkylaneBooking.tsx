@@ -341,7 +341,8 @@ export const SkylaneBooking: React.FC<SkylaneBookingProps> = ({ onBackToHome, ap
         return null;
     }
   };
-
+  const serviceFee = applicationParams.services[0]?.category === 'visa' ? 'US$ 25.00' : 'US$ 40.00';
+  const processingTime = applicationParams.services[0]?.category === 'visa' ? '3-5 days' : '7-10 days';
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-primary-light/30">
       {/* Premium Header */}
@@ -541,14 +542,35 @@ export const SkylaneBooking: React.FC<SkylaneBookingProps> = ({ onBackToHome, ap
                   <p className="text-xs text-muted-foreground">Your application details</p>
                 </div>
               </div>
+              <div className="space-y-3">
+                                <div className="flex justify-between items-center">
+                                  <span className="text-sm text-muted-foreground">Service Fee:</span>
+                                  <span className="text-sm font-medium">{serviceFee}</span>
+                                </div>
+                                <div className="flex justify-between items-center">
+                                  <span className="text-sm text-muted-foreground">Processing Fee:</span>
+                                  <span className="text-sm font-medium">US$ 5.00</span>
+                                </div>
+                                <div className="flex justify-between items-center">
+                                  <span className="text-sm text-muted-foreground">SMS Service:</span>
+                                  <span className="text-sm font-medium">US$ 2.00</span>
+                                </div>
+                                <hr className="my-3" />
+                                <div className="flex justify-between items-center">
+                                  <span className="font-semibold text-foreground">Total Amount:</span>
+                                  <span className="font-bold text-lg text-blue-600">{serviceFee === 'US$ 25.00' ? 'US$ 32.00' : 'US$ 47.00'}</span>
+                                </div>
+                              </div>
               
+                              <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                                <h4 className="font-semibold text-foreground mb-2">Selected Service:</h4>
+                                <p className="text-sm text-muted-foreground mb-2">{applicationParams.services[0]?.name}</p>
+                                <Badge variant="secondary" className="bg-blue-100 text-blue-700">
+                                  {applicationParams.services[0]?.category.toUpperCase()}
+                                </Badge>
+                              </div>
               <div className="space-y-4">
-                {bookingData.service && (
-                  <div className="p-3 bg-muted/40 rounded-lg border border-border/50">
-                    <p className="text-sm font-medium text-muted-foreground mb-1">Selected Service</p>
-                    <p className="text-sm text-foreground font-medium capitalize">{bookingData.service.replace('-', ' ')}</p>
-                  </div>
-                )}
+                
                 
                 {bookingData.appointment.center && (
                   <div className="p-3 bg-muted/40 rounded-lg border border-border/50">

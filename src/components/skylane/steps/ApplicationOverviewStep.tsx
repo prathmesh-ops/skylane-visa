@@ -78,7 +78,7 @@ export const ApplicationOverviewStep: React.FC<ApplicationOverviewStepProps> = (
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Left Column - How it works */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-3 space-y-6">
             <Card className="border-0 shadow-lg">
               <CardHeader className="pb-4">
                 <CardTitle className="flex items-center gap-3">
@@ -173,39 +173,13 @@ export const ApplicationOverviewStep: React.FC<ApplicationOverviewStepProps> = (
           </div>
 
           {/* Right Column - Fee structure & Continue */}
-          <div className="space-y-6">
+          <div className="space-y-2 col-span-3">
             <Card className="border-0 shadow-lg">
               <CardHeader className="pb-4">
                 <CardTitle className="text-lg">Fee structure</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground">Service Fee:</span>
-                    <span className="text-sm font-medium">{serviceFee}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground">Processing Fee:</span>
-                    <span className="text-sm font-medium">US$ 5.00</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground">SMS Service:</span>
-                    <span className="text-sm font-medium">US$ 2.00</span>
-                  </div>
-                  <hr className="my-3" />
-                  <div className="flex justify-between items-center">
-                    <span className="font-semibold text-foreground">Total Amount:</span>
-                    <span className="font-bold text-lg text-blue-600">{serviceFee === 'US$ 25.00' ? 'US$ 32.00' : 'US$ 47.00'}</span>
-                  </div>
-                </div>
-
-                <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                  <h4 className="font-semibold text-foreground mb-2">Selected Service:</h4>
-                  <p className="text-sm text-muted-foreground mb-2">{applicationParams.services[0]?.name}</p>
-                  <Badge variant="secondary" className="bg-blue-100 text-blue-700">
-                    {applicationParams.services[0]?.category.toUpperCase()}
-                  </Badge>
-                </div>
+                
 
                 <div className="space-y-2">
                   <h4 className="font-semibold text-foreground">Required Documents:</h4>
