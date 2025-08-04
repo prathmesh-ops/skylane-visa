@@ -8,7 +8,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown, ChevronRight, Calenda
 
 // Import step components
 import { ApplicationOverviewStep } from './steps/ApplicationOverviewStep';
-import { OtpVerificationStep } from './steps/OtpVerificationStep';
+import { PhoneNumberStep } from './steps/PhoneNumberStep';
 import { ApiServiceSelectionStep } from './steps/ApiServiceSelectionStep';
 import { DocumentCollectionStep } from './steps/DocumentCollectionStep';
 import { DocumentUploadStep } from './steps/DocumentUploadStep';
@@ -70,8 +70,8 @@ const steps = [
   },
   { 
     id: 2, 
-    title: 'Phone Verification', 
-    description: 'Verify with OTP',
+    title: 'Enter Phone Number', 
+    description: 'Provide your contact number',
     icon: Phone,
     category: 'Setup'
   },
@@ -98,8 +98,8 @@ const steps = [
   },
   { 
     id: 6, 
-    title: 'Additional Verification', 
-    description: 'Additional verification if needed',
+    title: 'Phone Verification', 
+    description: 'Verify phone with OTP code',
     icon: Phone,
     category: 'Verification'
   },
@@ -239,9 +239,11 @@ export const SkylaneBooking: React.FC<SkylaneBookingProps> = ({ onBackToHome, ap
         );
       case 2:
         return (
-          <OtpVerificationStep
-            onNext={handleNext}
+          <PhoneNumberStep
             phoneNumber={bookingData.phoneNumber}
+            onPhoneUpdate={(phoneNumber) => updateBookingData({ phoneNumber })}
+            onNext={handleNext}
+            onPrevious={handlePrevious}
           />
         );
       case 3:
@@ -279,7 +281,6 @@ export const SkylaneBooking: React.FC<SkylaneBookingProps> = ({ onBackToHome, ap
           <PhoneVerificationStep
             phoneNumber={bookingData.phoneNumber}
             isVerified={bookingData.isPhoneVerified}
-            onPhoneUpdate={(phoneNumber) => updateBookingData({ phoneNumber })}
             onVerificationComplete={() => updateBookingData({ isPhoneVerified: true })}
             onNext={handleNext}
             onPrevious={handlePrevious}
